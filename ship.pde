@@ -4,7 +4,7 @@ class Ship {
 
   float shipStartX = width/2;
   float shipStartY = height - shipHeight - 10;
-  
+
   float shipX;
   float shipY;
 
