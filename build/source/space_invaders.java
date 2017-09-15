@@ -38,9 +38,13 @@ int lastMillis = 0;
 int bulletDelay = 500; //millis
 
 //Alien options
-int numAliens = 10;
-int alienSpacing = 5;
-float alienSpeed = 0.01f;
+float alienSpeed = 0.5f;
+
+int alienRows = 3;
+int aliensPerRow = 5;
+
+float gridX = 50;
+float gridY = 50;
 
 /********************************************
 
@@ -56,10 +60,17 @@ public void setup() {
   aliens = new ArrayList<Alien>();
 
   //Adding new aliens
-  for (int i = 0; i < numAliens; i++){
-    Alien a = new Alien(i+alienSpacing, i+alienSpacing, alienSpeed);
-    aliens.add(a);
+  for (int i = 0; i < aliensPerRow; i++){
+    for (int j = 0; j < alienRows; j++){
+      Alien a = new Alien(gridX*i, gridY*j, alienSpeed);
+      aliens.add(a);
+    }
   }
+  //Old code to add aliens
+  // for (int i = 0; i < numAliens; i++){
+  //   Alien a = new Alien(i+alienSpacing, i+alienSpacing, alienSpeed);
+  //   aliens.add(a);
+  // }
 
   //Array to handle mulitple keypresses
   keys = new boolean[3];
@@ -111,6 +122,9 @@ public void draw() {
     b.updateBullet();
     b.drawBullet();
   }
+
+  //Hit detection
+
 }
 
 
@@ -182,6 +196,10 @@ class Alien{
 
   public void updateAlien(){
     alienY += alienSpeed;
+  }
+
+  public void destroyAlien(){
+    
   }
 }
 class Ship {

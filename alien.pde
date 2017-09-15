@@ -20,4 +20,8 @@ class Alien{
   void updateAlien(){
     alienY += alienSpeed;
   }
+
+  void destroyAlien(){
+    
+  }
 }

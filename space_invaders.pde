@@ -22,9 +22,13 @@ int lastMillis = 0;
 int bulletDelay = 500; //millis
 
 //Alien options
-int numAliens = 10;
-int alienSpacing = 5;
-float alienSpeed = 0.01;
+float alienSpeed = 0.5;
+
+int alienRows = 3;
+int aliensPerRow = 5;
+
+float gridX = 50;
+float gridY = 50;
 
 /********************************************
 
@@ -39,8 +43,14 @@ void setup() {
   bullets = new ArrayList<Bullet>();
   aliens = new ArrayList<Alien>();
 
-  // //Adding new aliens
-  //CURRENTLY BROKEN
+  //Adding new aliens
+  for (int i = 0; i < aliensPerRow; i++){
+    for (int j = 0; j < alienRows; j++){
+      Alien a = new Alien(gridX*i, gridY*j, alienSpeed);
+      aliens.add(a);
+    }
+  }
+  //Old code to add aliens
   // for (int i = 0; i < numAliens; i++){
   //   Alien a = new Alien(i+alienSpacing, i+alienSpacing, alienSpeed);
   //   aliens.add(a);
@@ -96,6 +106,9 @@ void draw() {
     b.updateBullet();
     b.drawBullet();
   }
+
+  //Hit detection
+
 }
 
 
